@@ -20,7 +20,7 @@
 PRODUCT_RELEASE_NAME := m01q
 
 # Dynamic Partition
-PRODUCT_USE_DYNAMIC_PARTITION := tru
+PRODUCT_USE_DYNAMIC_PARTITION := true
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
