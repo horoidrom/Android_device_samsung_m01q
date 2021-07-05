@@ -28,21 +28,13 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := generic
 
-# Assert
-TARGET_OTA_ASSERT_DEVICE := m01q
-
 # Bootloader"
 TARGET_BOOTLOADER_BOARD_NAME := SRPTB14A003
+TARGET_NO_BOOTLOADER := true
+TARGET_USES_UEFI := true
 
-# File systems
-BOARD_HAS_LARGE_FILESYSTEM := true
-#BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864 # This is the maximum known partition size, but it can be higher, so we just omit it
-BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
-BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
-TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
-TARGET_COPY_OUT_VENDOR := vendor
+# Platform
+TARGET_BOARD_PLATFORM := msm8937
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.console=ttyMSM0 androidboot.hardware=qcom user_debug=30 msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlycon=msm_hsl_uart,0x78B0000 vmalloc=300M androidboot.usbconfigfs=true loop.max_part=7
@@ -66,8 +58,23 @@ TARGET_KERNEL_HEADER_ARCH := arm
 TARGET_KERNEL_SOURCE := kernel/samsung/m01q
 TARGET_KERNEL_CONFIG := m01q_defconfig
 
-# Platform
-TARGET_BOARD_PLATFORM := msm8937
+# Assert
+TARGET_OTA_ASSERT_DEVICE := m01q
+
+# Partition
+BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
+BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
+
+# File systems
+TARGET_USERIMAGES_USE_F2FS := true
+TARGET_USERIMAGES_USE_EXT4 := true
+
+# Workaround for error copying vendor files to recovery ramdisk
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_VENDOR := vendor
 
 # FBE
 BOARD_USES_QCOM_DECRYPTION := true
@@ -85,6 +92,26 @@ BOARD_USES_METADATA_PARTITION := true
 # TWRP Configuration
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
+TW_INCLUDE_NTFS_3G := true
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
+TW_INCLUDE_RESETPROP := true
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+RECOVERY_SDCARD_ON_DATA := true
+
+# Display
+TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
+TW_MAX_BRIGHTNESS := 2047
+TW_DEFAULT_BRIGHTNESS := 1200
+TW_NO_SCREEN_BLANK := true
+
+# Logcat
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
+TARGET_USES_MKE2FS := true
+
+# Exclude
+TW_EXCLUDE_TWRPAPP := true
+
+TW_DEVICE_VERSION := OhyeaaH
