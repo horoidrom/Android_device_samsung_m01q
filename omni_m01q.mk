@@ -23,7 +23,6 @@ PRODUCT_RELEASE_NAME := m01q
 PRODUCT_USE_DYNAMIC_PARTITION := tru
 
 # Inherit from those products. Most specific first.
-$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/embedded.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
 # Inherit some common Omni stuff.
