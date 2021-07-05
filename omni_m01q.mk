@@ -16,6 +16,9 @@
 # limitations under the License.
 #
 
+# Release
+PRODUCT_RELEASE_NAME := m01q
+
 # Inherit from those products. Most specific first.
 $(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/embedded.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
@@ -32,6 +35,9 @@ $(call inherit-product, vendor/omni/config/gsm.mk)
 PRODUCT_DEVICE := m01q
 PRODUCT_NAME := omni_m01q
 PRODUCT_BRAND := samsung
-PRODUCT_MODEL := samsung
+PRODUCT_MODEL := m01q
 PRODUCT_MANUFACTURER := samsung
-PRODUCT_RELEASE_NAME := samsung samsung
+
+PRODUCT_PACKAGES += \
+    qcom_decrypt \
+    qcom_decrypt_fbe
